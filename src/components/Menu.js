@@ -4,15 +4,15 @@ import { Menu, Icon } from 'semantic-ui-react';
 import './Menu.css';
 
 const MainMenu = ({ account }) => {
-  const [activeItem, setActiveItem] = useState('todoList');
+  const [activeItem, setActiveItem] = useState('starterKit');
 
   const handleItemClick = (e, { name }) => setActiveItem(name);
 
   return (
     <Menu id='main_menu'>
       <Menu.Item
-        name='Meme of the day'
-        active={activeItem === 'todoList'}
+        name='Starter Kit'
+        active={activeItem === 'starterKit'}
         onClick={handleItemClick}
       />
       <p className='account'>

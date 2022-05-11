@@ -1,18 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useReducer } from 'react';
+import { reducer } from './redux_hooks/redux';
+import { defaultState } from './redux_hooks/state';
+import * as ACTIONS from './redux_hooks/constants';
 import getWeb3 from './utils/getWeb3';
 
 import NewContract from '../src/build/abi/NewContract.json';
 import MainMenu from './components/Menu';
 
-import { Button, Container, Form, Divider, Image } from 'semantic-ui-react';
+import {
+  Container,
+  Divider,
+  Card,
+  Dimmer,
+  Loader,
+  Message,
+} from 'semantic-ui-react';
 
 const App = () => {
-  const [accounts, setAccounts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [contract, setContract] = useState({});
-  const [web3, setWeb3] = useState({});
+  const [state, dispatch] = useReducer(reducer, defaultState);
+  const { account, contract, errors, loading } = state;
+  const { SET_WEB3, SET_ERROR } = ACTIONS;
 
-  const loadWeb3 = async () => {
+  const loadWeb3 = useCallback(async () => {
     try {
       const web3 = await getWeb3();
       if (web3) {
@@ -31,29 +40,57 @@ const App = () => {
             contractAddress
           );
 
-          setContract(contractData);
+          dispatch({
+            type: SET_WEB3,
+            value: {
+              web3: web3,
+              contract: contractData,
+              account: getAccounts,
+              loading: false,
+            },
+          });
         } else {
           alert('Smart contract not deployed to selected network');
         }
-        setWeb3(web3);
-        setAccounts(getAccounts);
-        setLoading(false);
       }
     } catch (error) {
-      console.log(error);
+      dispatch({ type: SET_ERROR, value: error });
     }
-  };
+  }, [SET_WEB3, SET_ERROR]);
 
   useEffect(() => {
     loadWeb3();
   }, []);
 
+  console.log(state);
+
   return (
     <div className='App'>
-      <MainMenu account={accounts[0]} />
+      <MainMenu account={account} />
 
       <Divider horizontal>§</Divider>
-      <Container></Container>
+      <Container>
+        <Card centered>
+          <Dimmer
+            active={loading}
+            style={{
+              width: '320px',
+              height: '100px',
+            }}
+          >
+            <Loader />
+          </Dimmer>
+        </Card>
+      </Container>
+      <Divider horizontal>§</Divider>
+      <Container>
+        {errors && (
+          <Message negative>
+            <Message.Header>Code: {errors?.code}</Message.Header>
+            <p style={{ wordWrap: 'break-word' }}>{errors?.message}</p>
+          </Message>
+        )}
+      </Container>
     </div>
   );
 };

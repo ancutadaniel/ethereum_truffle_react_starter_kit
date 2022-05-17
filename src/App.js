@@ -18,7 +18,7 @@ import {
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, defaultState);
-  const { account, contract, errors, loading } = state;
+  const { account, errors, loading } = state;
   const { SET_WEB3, SET_ERROR } = ACTIONS;
 
   const loadWeb3 = useCallback(async () => {
@@ -60,7 +60,7 @@ const App = () => {
 
   useEffect(() => {
     loadWeb3();
-  }, []);
+  }, [loadWeb3]);
 
   console.log(state);
 

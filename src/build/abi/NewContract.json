@@ -1,0 +1,125 @@
+{
+  "contractName": "NewContract",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.13+commit.abaa5c0e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/src/contracts/NewContract.sol\":\"NewContract\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/src/contracts/NewContract.sol\":{\"keccak256\":\"0x2be4d83b02a8dfe97102ddd0bca0e5ec8448352081a413b4b366b0bb1d29b27e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://574a50175d3695ea463a4fd15cba2e523c26324ce54a2bc6dc8efb13c4039595\",\"dweb:/ipfs/QmcuAHpK4pRKxXaCH4tKokW7zo1BtjfV2RyZNh4x6WB52J\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220df2bb748b03d54da6628796d056f73298286ae8b67922d51424aa8bf8e2764f964736f6c634300080d0033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220df2bb748b03d54da6628796d056f73298286ae8b67922d51424aa8bf8e2764f964736f6c634300080d0033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "66:47:1:-:0;;;91:20;;;;;;;;;;66:47;;;;;;",
+  "deployedSourceMap": "66:47:1:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.9.0;\n\ncontract NewContract {\n  constructor()  {\n  }\n}\n",
+  "sourcePath": "/Users/danielancuta/Development/blockchain/truffle-react-starter-kit/src/contracts/NewContract.sol",
+  "ast": {
+    "absolutePath": "project:/src/contracts/NewContract.sol",
+    "exportedSymbols": {
+      "NewContract": [
+        39
+      ]
+    },
+    "id": 40,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:32:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "NewContract",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 39,
+        "linearizedBaseContracts": [
+          39
+        ],
+        "name": "NewContract",
+        "nameLocation": "75:11:1",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 37,
+              "nodeType": "Block",
+              "src": "106:5:1",
+              "statements": []
+            },
+            "id": 38,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 35,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "102:2:1"
+            },
+            "returnParameters": {
+              "id": 36,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "106:0:1"
+            },
+            "scope": 39,
+            "src": "91:20:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 40,
+        "src": "66:47:1",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:82:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.13+commit.abaa5c0e.Emscripten.clang"
+  },
+  "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0x642d5D199fDc94aE8b5fdADe8Ff6315aD213c3ac",
+      "transactionHash": "0x97fa16377eef8b5f98723c846c3e6b6198ff41fa29f3eda120f6f4fb0110fc1b"
+    }
+  },
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2022-05-17T14:23:22.472Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

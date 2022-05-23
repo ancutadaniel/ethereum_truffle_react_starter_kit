@@ -1,7 +1,11 @@
 export const defaultState = {
   account: '',
-  loading: true,
+  balance: 0,
   contract: {},
-  web3: {},
   errors: null,
+  loading: true,
+  networkID: null,
+  reloadData: false,
+  web3: {},
+  wrongNetwork: false,
 };

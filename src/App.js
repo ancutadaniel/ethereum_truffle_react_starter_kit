@@ -131,7 +131,7 @@ const App = () => {
     loadWeb3();
   }, [loadWeb3]);
 
-  console.log(state);
+  // console.log(state);
 
   return (
     <div className='App'>

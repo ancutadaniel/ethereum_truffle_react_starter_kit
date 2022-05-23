@@ -10,7 +10,7 @@ export const reducer = (state, action) => {
     NETWORK_CHANGE,
   } = ACTIONS;
 
-  console.log(action.type, action.value);
+  // console.log(action.type, action.value);
 
   switch (action.type) {
     case SET_WEB3:

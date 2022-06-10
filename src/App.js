@@ -5,22 +5,14 @@ import * as ACTIONS from './redux_hooks/constants';
 import getWeb3 from './utils/getWeb3';
 
 import NewContract from '../src/build/abi/NewContract.json';
-import MainMenu from './components/Menu';
+import MainMenu from './components/Menu/Menu';
 
-import {
-  Container,
-  Divider,
-  Card,
-  Dimmer,
-  Loader,
-  Message,
-  Button,
-  Icon,
-} from 'semantic-ui-react';
+import { Container, Card, Dimmer, Loader } from 'semantic-ui-react';
+import Error from './components/Error/Error';
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, defaultState);
-  const { errors, loading, reloadData, wrongNetwork } = state;
+  const { errors, loading, reloadData, wrongNetwork, account } = state;
   const {
     SET_WEB3,
     SET_ERROR,
@@ -48,6 +40,7 @@ const App = () => {
             NewContract.abi,
             contractAddress
           );
+          // Other contract details
           const getBalance = await web3.eth.getBalance(owner);
 
           dispatch({
@@ -61,7 +54,7 @@ const App = () => {
             },
           });
 
-          // listen to account change
+          // listen to account change - recommended by metamask
           window.ethereum.on('accountsChanged', async (acc) => {
             dispatch({ type: SET_LOADING });
             const [newAddress] = acc;
@@ -82,7 +75,7 @@ const App = () => {
             }
           });
 
-          // listen to chain change
+          // listen to chain change - recommended by metamask
           window.ethereum.on('chainChanged', async (chainId) => {
             dispatch({ type: SET_LOADING });
             try {
@@ -127,58 +120,23 @@ const App = () => {
     reloadData && loadWeb3();
   }, [reloadData, loadWeb3]);
 
-  useEffect(() => {
-    loadWeb3();
-  }, [loadWeb3]);
-
-  // console.log(state);
-
   return (
     <div className='App'>
-      <MainMenu state={state} />
-      <Container>
-        <Card centered>
-          <Dimmer
-            active={loading}
-            style={{
-              width: '320px',
-              height: '100px',
-            }}
-          >
-            <Loader />
-          </Dimmer>
-        </Card>
-      </Container>
-      <Container>
-        {errors && (
-          <Message negative>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Message.Header>Code: {errors?.code}</Message.Header>
-              <Button
-                style={{
-                  padding: '0px',
-                  background: 'none',
-                  color: 'red',
-                  marginRight: '0px',
-                }}
-                onClick={() => dispatch({ type: SET_ERROR, value: null })}
-              >
-                <Icon name='close' />
-              </Button>
-            </div>
-            <p style={{ wordBreak: 'break-word' }}>{errors?.message}</p>
-          </Message>
-        )}
-        {wrongNetwork && (
-          <>
-            <Divider horizontal>§</Divider>
-            <Message negative>
-              <Message.Header>Wrong Network</Message.Header>
-              <p>Please select from Metamask - Rinkeby Test Network (id 4)</p>
-            </Message>
-          </>
-        )}
-      </Container>
+      <MainMenu state={state} loadWeb3={loadWeb3} />
+      {!account ? (
+        <Container>
+          <Card centered style={{ marginTop: '40vh', height: '80px' }}>
+            <Dimmer active={loading} inverted>
+              <Loader size='small'>Please connect your wallet...</Loader>
+            </Dimmer>
+          </Card>
+        </Container>
+      ) : (
+        <Container>
+          <p>Content here</p>
+        </Container>
+      )}
+      <Error errors={errors} wrongNetwork={wrongNetwork} dispatch={dispatch} />
     </div>
   );
 };
